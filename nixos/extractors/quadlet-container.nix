@@ -57,7 +57,7 @@ let
   unknownContainers = filterAttrs (_: v: v.serviceName == null) containersWithMatch;
 in
 {
-  options.topology.extractors.quadlet-container.enable =
+  options.topology.extractors.quadlet.enable =
     mkEnableOption "topology quadlet-container extractor"
     // {
       default = true;
@@ -68,7 +68,7 @@ in
     (mapAttrs' (containerName: v: {
       name = v.serviceName;
       value = {
-        inherit (metadata.${v.serviceName}) name image;
+        inherit (metadata.${v.serviceName}) name icon;
         details.container.text = v.container.image or containerName;
       };
     }) directMatches)
