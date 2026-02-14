@@ -78,7 +78,7 @@ in
       name = containerName;
       value = {
         name = "${metadata.${v.serviceName}.name or v.serviceName} (${v.suffix})";
-        icon = metadata.${v.serviceName}.icon or "services.docker";
+        icon = metadata.${v.serviceName}.icon or "services.not-available";
         details.container.text = v.container.image or containerName;
         details.role.text = v.suffix;
       };
@@ -89,7 +89,7 @@ in
       name = containerName;
       value = {
         name = mkDefault containerName;
-        icon = mkDefault "services.docker";
+        icon = mkDefault "services.not-available";
         details.container.text = v.container.image or containerName;
       };
     }) unknownContainers)
