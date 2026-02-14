@@ -16,7 +16,7 @@ let
     head
     ;
 
-  metadata = import ./service-metadata.nix;
+  metadata = import ../service-metadata.nix;
 
   knownServiceNames = attrNames metadata;
 
