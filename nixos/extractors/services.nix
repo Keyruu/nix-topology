@@ -14,7 +14,7 @@ let
     imap0
     length
     listToAttrs
-    mapAttrs
+    mapAttrs'
     mapAttrsToList
     mkDefault
     mkEnableOption
@@ -790,12 +790,15 @@ in
         details.listen.text = "${config.services.zipline.settings.CORE_HOSTNAME}:${toString config.services.zipline.settings.CORE_PORT}";
       };
     }
-    // flip mapAttrs config.services.restic.backups (
+    // flip mapAttrs' config.services.restic.backups (
       backupName: cfg: {
-        name = "Restic backup '${backupName}'";
-        icon = "services.restic";
-        info = mkIf (cfg.repository != null) cfg.repository;
-        details.paths.text = toString cfg.paths;
+        name = "restic-${backupName}";
+        value = {
+          name = "Restic backup '${backupName}'";
+          icon = "services.restic";
+          info = mkIf (cfg.repository != null) cfg.repository;
+          details.paths.text = toString cfg.paths;
+        };
       }
     )
   );
